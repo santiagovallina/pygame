@@ -4,6 +4,7 @@ from models.constantes import (
     ALTO_VENTANA, ANCHO_VENTANA, FPS
 )
 from models.player.main_player import Jugador
+from models.villian.main_villian import Villian
 
 screen = pg.display.set_mode((ANCHO_VENTANA, ALTO_VENTANA))
 pg.init()
@@ -16,6 +17,7 @@ back_img = pg.transform.scale(back_img, (ANCHO_VENTANA, ALTO_VENTANA))
 juego_ejecutandose = True
 
 vegeta = Jugador(0, 0, frame_rate=70, speed_walk=20, speed_run=40)
+villano = Villian(0, 0, frame_rate=70, speed_walk=20, speed_run=40)
 
 
 while juego_ejecutandose:
@@ -38,10 +40,13 @@ while juego_ejecutandose:
     lista_teclas_presionadas = pg.key.get_pressed()
     if lista_teclas_presionadas[pg.K_RIGHT] and not lista_teclas_presionadas[pg.K_LEFT]:
         vegeta.walk('Right')
+        villano.walk('Right')
     if lista_teclas_presionadas[pg.K_LEFT] and not lista_teclas_presionadas[pg.K_RIGHT]:
         vegeta.walk('Left')
+        villano.walk('Left')
     if not lista_teclas_presionadas[pg.K_RIGHT] and not lista_teclas_presionadas[pg.K_LEFT]:
         vegeta.stay()
+        villano.stay()
     
     if lista_teclas_presionadas[pg.K_RIGHT] and lista_teclas_presionadas[pg.K_LSHIFT] and not lista_teclas_presionadas[pg.K_LEFT]:
         vegeta.run('Right')
