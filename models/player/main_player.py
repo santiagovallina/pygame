@@ -104,9 +104,9 @@ class Jugador:
                 self.__initial_frame += 1
             else:
                 self.__initial_frame = 0
-                # if self.__is_jumping:
-                #     self.__is_jumping = False
-                #     self.__move_y = 0
+                if self.__is_jumping:
+                    self.__is_jumping = False
+                    self.__move_y = 0
     
     def update(self, delta_ms):
         self.do_movement(delta_ms)

@@ -48,10 +48,9 @@ while juego_ejecutandose:
     if lista_teclas_presionadas[pg.K_LEFT] and lista_teclas_presionadas[pg.K_LSHIFT] and not lista_teclas_presionadas[pg.K_RIGHT]:
         vegeta.run('Left')
     
-    if lista_teclas_presionadas[pg.K_UP] and lista_teclas_presionadas[pg.K_LSHIFT] and not lista_teclas_presionadas[pg.K_LEFT]:
-        vegeta.run('up')
     
-    
+    if lista_teclas_presionadas[pg.K_UP] :
+        vegeta.jump('Up')
         
     
     screen.blit(back_img, back_img.get_rect())
