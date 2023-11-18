@@ -5,7 +5,7 @@ from models.constantes import ANCHO_VENTANA, DEBUG
 
 class Jugador:
 
-    def __init__(self, coord_x, coord_y, frame_rate = 100, speed_walk = 6, speed_run = 12, gravity = 16, jump = 32):
+    def __init__(self, coord_x, coord_y, frame_rate = 100, speed_walk = 6, speed_run = 12, gravity = 16, jump = 30):
         self.__iddle_r = sf.get_surface_from_spritesheet('./assets/img/player/iddle/player_idle.png', 5, 1)
         self.__iddle_l = sf.get_surface_from_spritesheet('./assets/img/player/iddle/player_idle.png', 5, 1, flip=True)
         self.__walk_r = sf.get_surface_from_spritesheet('./assets/img/player/walk/player_walk.png', 6, 1)

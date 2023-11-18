@@ -10,7 +10,8 @@ screen = pg.display.set_mode((ANCHO_VENTANA, ALTO_VENTANA))
 pg.init()
 clock = pg.time.Clock()
 
-back_img = pg.image.load('./assets/img/background/goku_house.png')
+#back_img = pg.image.load('./assets/img/background/goku_house.png')
+back_img = pg.image.load('./assets/img/background/estadio.jpg')
 back_img = pg.transform.scale(back_img, (ANCHO_VENTANA, ALTO_VENTANA))
 
 
