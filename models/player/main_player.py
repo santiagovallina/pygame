@@ -1,19 +1,20 @@
 from models.auxiliar import SurfaceManager as sf
 import pygame as pg
 from models.constantes import ANCHO_VENTANA, DEBUG
+from models.bullet import Bullet
 
 
 class Jugador:
 
-    def __init__(self, coord_x, coord_y, frame_rate = 100, speed_walk = 6, speed_run = 12, gravity = 16, jump = 30):
-        self.__iddle_r = sf.get_surface_from_spritesheet('./assets/img/player/iddle/player_idle.png', 5, 1)
-        self.__iddle_l = sf.get_surface_from_spritesheet('./assets/img/player/iddle/player_idle.png', 5, 1, flip=True)
-        self.__walk_r = sf.get_surface_from_spritesheet('./assets/img/player/walk/player_walk.png', 6, 1)
-        self.__walk_l = sf.get_surface_from_spritesheet('./assets/img/player/walk/player_walk.png', 6, 1, flip=True)
-        self.__run_r = sf.get_surface_from_spritesheet('./assets/img/player/run/player_run.png', 2, 1)
-        self.__run_l = sf.get_surface_from_spritesheet('./assets/img/player/run/player_run.png', 2, 1, flip=True)
-        self.__jump_r = sf.get_surface_from_spritesheet('./assets/img/player/jump/player_jump.png', 6, 1)
-        self.__jump_l = sf.get_surface_from_spritesheet('./assets/img/player/jump/player_jump.png', 6, 1, flip=True)
+    def __init__(self, coord_x, coord_y, frame_rate = 100, speed_walk = 6, speed_run = 12, gravity = 30, jump = 30):
+        self.__iddle_r = sf.get_surface_from_spritesheet('assets/img/player/idle/idle.jpg', 4, 1)
+        self.__iddle_l = sf.get_surface_from_spritesheet('assets/img/player/idle/idle.jpg', 4, 1, flip=True)
+        self.__walk_r = sf.get_surface_from_spritesheet('assets/img/player/walk/walk.jpg', 8, 1)
+        self.__walk_l = sf.get_surface_from_spritesheet('assets/img/player/walk/walk.jpg', 8, 1, flip=True)
+        self.__run_r = sf.get_surface_from_spritesheet('assets/img/player/run/run.jpg', 10, 1)
+        self.__run_l = sf.get_surface_from_spritesheet('assets/img/player/run/run.jpg', 10, 1, flip=True)
+        self.__jump_r = sf.get_surface_from_spritesheet('assets/img/player/jump/jump.jpg', 6, 1)
+        self.__jump_l = sf.get_surface_from_spritesheet('assets/img/player/jump/jump.jpg', 6, 1, flip=True)
         self.__move_x = coord_x
         self.__move_y = coord_y
         self.__speed_walk = speed_walk
@@ -29,8 +30,9 @@ class Jugador:
         self.__actual_img_animation = self.__actual_animation[self.__initial_frame]
         self.__rect = self.__actual_img_animation.get_rect()
         self.__is_looking_right = True
+        #self.__shoot = sf.get_surface_from_spritesheet('assets/img/background/pelota.jpg', 1, 1)
 
-    
+
     def __set_x_animations_preset(self, move_x, animation_list: list[pg.surface.Surface], look_r: bool):
         self.__move_x = move_x
         self.__actual_animation = animation_list
@@ -76,6 +78,7 @@ class Jugador:
         else:
             self.__is_jumping = False
             self.stay()
+        
     
     def __set_borders_limits(self):
         pixels_move = 0
@@ -91,10 +94,21 @@ class Jugador:
         if self.__player_move_time >= self.__frame_rate:
             self.__player_move_time = 0
             self.__rect.x += self.__set_borders_limits()
-            self.__rect.y += self.__move_y
+            #self.__rect.y += self.__move_y
             # Parte relacionado a saltar
-            if self.__rect.y < 300:
-                self.__rect.y += self.__gravity
+            if self.__is_jumping:
+                self.__move_y += self.__gravity
+                self.__rect.y += self.__move_y
+                
+            # Si toca el suelo, detiene el salto
+                if self.__rect.y >= 300:
+                    self.__rect.y = 300
+                    self.__is_jumping = False
+                    self.__move_y = 0
+            else:
+                # Si no está saltando, aplica gravedad normal
+                if self.__rect.y < 400:
+                    self.__rect.y += self.__gravity
 
     def do_animation(self, delta_ms):
         self.__player_animation_time += delta_ms
@@ -107,10 +121,11 @@ class Jugador:
                 if self.__is_jumping:
                     self.__is_jumping = False
                     self.__move_y = 0
-    
+
     def update(self, delta_ms):
         self.do_movement(delta_ms)
         self.do_animation(delta_ms)
+
     
     def draw(self, screen: pg.surface.Surface):
         if DEBUG:
@@ -118,3 +133,4 @@ class Jugador:
             #pg.draw.rect(screen, 'green', self.__rect.bottom)
         self.__actual_img_animation = self.__actual_animation[self.__initial_frame]
         screen.blit(self.__actual_img_animation, self.__rect)
+    
