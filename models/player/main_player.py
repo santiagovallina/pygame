@@ -1,20 +1,20 @@
 from models.auxiliar import SurfaceManager as sf
 import pygame as pg
 from models.constantes import ANCHO_VENTANA, DEBUG
-from models.bullet import Bullet
+#from models.bullet import Bullet
 
 
 class Jugador:
 
-    def __init__(self, coord_x, coord_y, frame_rate = 100, speed_walk = 6, speed_run = 12, gravity = 30, jump = 30):
-        self.__iddle_r = sf.get_surface_from_spritesheet('assets/img/player/idle/idle.jpg', 4, 1)
-        self.__iddle_l = sf.get_surface_from_spritesheet('assets/img/player/idle/idle.jpg', 4, 1, flip=True)
-        self.__walk_r = sf.get_surface_from_spritesheet('assets/img/player/walk/walk.jpg', 8, 1)
-        self.__walk_l = sf.get_surface_from_spritesheet('assets/img/player/walk/walk.jpg', 8, 1, flip=True)
-        self.__run_r = sf.get_surface_from_spritesheet('assets/img/player/run/run.jpg', 10, 1)
-        self.__run_l = sf.get_surface_from_spritesheet('assets/img/player/run/run.jpg', 10, 1, flip=True)
-        self.__jump_r = sf.get_surface_from_spritesheet('assets/img/player/jump/jump.jpg', 6, 1)
-        self.__jump_l = sf.get_surface_from_spritesheet('assets/img/player/jump/jump.jpg', 6, 1, flip=True)
+    def __init__(self, coord_x, coord_y, frame_rate = 800, speed_walk = 6, speed_run = 12, gravity = 30, jump = 30):
+        self.__iddle_r = sf.get_surface_from_spritesheet('assets/img/player/idle/idle.png', 4, 1)
+        self.__iddle_l = sf.get_surface_from_spritesheet('assets/img/player/idle/idle.png', 4, 1, flip=True)
+        self.__walk_r = sf.get_surface_from_spritesheet('assets/img/player/walk/walk.png', 8, 1)
+        self.__walk_l = sf.get_surface_from_spritesheet('assets/img/player/walk/walk.png', 8, 1, flip=True)
+        self.__run_r = sf.get_surface_from_spritesheet('assets/img/player/run/run.png', 10, 1)
+        self.__run_l = sf.get_surface_from_spritesheet('assets/img/player/run/run.png', 10, 1, flip=True)
+        self.__jump_r = sf.get_surface_from_spritesheet('assets/img/player/jump/jump.png', 6, 1)
+        self.__jump_l = sf.get_surface_from_spritesheet('assets/img/player/jump/jump.png', 6, 1, flip=True)
         self.__move_x = coord_x
         self.__move_y = coord_y
         self.__speed_walk = speed_walk
