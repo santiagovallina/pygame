@@ -6,8 +6,8 @@ from models.constantes import ANCHO_VENTANA, DEBUG
 class Villian:
 
     def __init__(self, coord_x, coord_y, frame_rate = 800, speed_walk = 6, speed_run = 12, gravity = 30, jump = 32):
-        self.__iddle_r = sf.get_surface_from_spritesheet('assets/img/villano/idle/idle.png', 3, 1)
-        self.__iddle_l = sf.get_surface_from_spritesheet('assets/img/villano/idle/idle.png', 3, 1, flip=True)
+        self.__iddle_r = sf.get_surface_from_spritesheet('assets/img/villano/idle/idle_2.png', 3, 1)
+        self.__iddle_l = sf.get_surface_from_spritesheet('assets/img/villano/idle/idle_2.png', 3, 1, flip=True)
         self.__walk_r = sf.get_surface_from_spritesheet('assets/img/villano/walk/walk.png', 8, 1)
         self.__walk_l = sf.get_surface_from_spritesheet('assets/img/villano/walk/walk.png', 8, 1, flip=True)
         self.__run_r = sf.get_surface_from_spritesheet('assets/img/villano/run/run.png', 10, 1)
@@ -26,6 +26,7 @@ class Villian:
         self.__actual_img_animation = self.__actual_animation[self.__initial_frame]
         self.__rect = self.__actual_img_animation.get_rect()
         self.__is_looking_right = True
+        self.__destination = (coord_x, coord_y)
 
     
     def __set_x_animations_preset(self, move_x, animation_list: list[pg.surface.Surface], look_r: bool):

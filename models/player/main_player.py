@@ -7,8 +7,8 @@ from models.constantes import ANCHO_VENTANA, DEBUG
 class Jugador:
 
     def __init__(self, coord_x, coord_y, frame_rate = 800, speed_walk = 6, speed_run = 12, gravity = 30, jump = 30):
-        self.__iddle_r = sf.get_surface_from_spritesheet('assets/img/player/idle/idle.png', 4, 1)
-        self.__iddle_l = sf.get_surface_from_spritesheet('assets/img/player/idle/idle.png', 4, 1, flip=True)
+        self.__iddle_r = sf.get_surface_from_spritesheet('assets/img/player/idle/idle_2.png', 3, 1)
+        self.__iddle_l = sf.get_surface_from_spritesheet('assets/img/player/idle/idle_2.png', 3, 1, flip=True)
         self.__walk_r = sf.get_surface_from_spritesheet('assets/img/player/walk/walk.png', 8, 1)
         self.__walk_l = sf.get_surface_from_spritesheet('assets/img/player/walk/walk.png', 8, 1, flip=True)
         self.__run_r = sf.get_surface_from_spritesheet('assets/img/player/run/run.png', 10, 1)
